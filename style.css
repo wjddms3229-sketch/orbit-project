@@ -293,6 +293,8 @@ input {
     5% 22%,
     40% 32%
   );
+
+   filter: blur(0.5px);
 }
 
 .spark {
@@ -307,6 +309,8 @@ input {
     0% 50%,
     38% 36%
   );
+
+   filter: blur(0.5px);
 }
 
 /* panel */
@@ -401,10 +405,10 @@ input {
 
 .color-option,
 .shape-option {
-  width: 62px;
-  height: 62px;
-  min-width: 62px;
-  min-height: 62px;
+  width: 64px;
+  height: 64px;
+  min-width: 64px;
+  min-height: 64px;
   border: none;
   border-radius: 50%;
   cursor: pointer;
@@ -412,29 +416,30 @@ input {
   position: relative;
   font-size: 0;
   background: transparent;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.color-option {
-  background-color: var(--swatch-color, #d9b6bc);
-  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.16);
-}
-
-.color-option.selected {
-  outline: 5px solid rgba(255, 255, 255, 0.75);
-  outline-offset: -8px;
-}
-
+.color-option.selected,
 .shape-option.selected {
   background: rgba(80, 80, 80, 0.14);
 }
 
+.color-swatch {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: block;
+}
+
 .shape-swatch {
-  width: 46px;
-  height: 46px;
-  margin: 8px auto;
+  width: 44px;
+  height: 44px;
+  margin: 0;
   display: block;
   background: #9a9a9a;
-  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.16);
 }
 
 /* slider */
