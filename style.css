@@ -1,0 +1,1481 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #3d3d3d;
+  color: #eeeeee;
+  font-family: "Courier New", monospace;
+  overflow: hidden;
+}
+
+.screen {
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  position: relative;
+  overflow: hidden;
+  background: #3d3d3d;
+}
+
+.screen.active {
+  display: block;
+}
+
+/* first screens */
+
+.center-content {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 10;
+}
+
+h1 {
+  margin: 0 0 90px;
+  font-size: 42px;
+  letter-spacing: 8px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.text-button {
+  border: none;
+  background: none;
+  color: #eeeeee;
+  font-family: inherit;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.text-button:hover {
+  opacity: 0.6;
+}
+
+label {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 36px;
+}
+
+input {
+  width: 220px;
+  border: none;
+  border-bottom: 1px solid #aaaaaa;
+  background: transparent;
+  color: #eeeeee;
+  font-family: inherit;
+  font-size: 20px;
+  text-align: center;
+  outline: none;
+}
+
+/* start planet */
+
+.big-planet {
+  position: absolute;
+  border-radius: 50%;
+  background: #d8d8d8;
+}
+
+.start-planet {
+  width: 520px;
+  height: 520px;
+  left: 50%;
+  bottom: -310px;
+  transform: translateX(-50%);
+}
+
+/* transition screen */
+
+.scroll-guide {
+  position: absolute;
+  left: 50%;
+  top: 56%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 20;
+  animation: blinkText 2.7s ease-in-out infinite;
+}
+
+.arrow {
+  display: none;
+}
+
+.scroll-guide p {
+  font-size: 14px;
+  margin: 0;
+}
+
+@keyframes blinkText {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.transition-header,
+.orbit-header {
+  position: absolute;
+  left: 70px;
+  top: 70px;
+  z-index: 10;
+}
+
+.transition-header {
+  opacity: 0;
+}
+
+.transition-header h2,
+.orbit-header h2 {
+  font-size: 30px;
+  letter-spacing: 4px;
+  font-weight: 400;
+  margin: 0 0 28px;
+}
+
+.transition-header p,
+.orbit-header p {
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0;
+  color: rgba(238, 238, 238, 0.85);
+}
+
+/* orbit system */
+
+.orbit-preview,
+.orbit-area {
+  position: absolute;
+  width: 760px;
+  height: 500px;
+  left: 50%;
+}
+
+.orbit-preview {
+  bottom: -300px;
+  transform: translateX(-50%) scale(5.78);
+  transform-origin: 50% 50%;
+  z-index: 1;
+  opacity: 1;
+}
+
+.orbit-area {
+  top: 52%;
+  transform: translate(-50%, -50%);
+  transform-origin: center center;
+}
+
+.orbit-area.smooth {
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.orbit {
+  position: absolute;
+  border: 1px solid rgba(240, 240, 240, 0.5);
+  border-radius: 50%;
+  transform: rotate(-14deg);
+}
+
+.orbit-1 {
+  width: 350px;
+  height: 190px;
+  left: 205px;
+  top: 155px;
+}
+
+.orbit-2 {
+  width: 520px;
+  height: 280px;
+  left: 120px;
+  top: 110px;
+}
+
+.orbit-3 {
+  width: 690px;
+  height: 370px;
+  left: 35px;
+  top: 65px;
+}
+
+.center-planet {
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  background: #d8d8d8;
+  border-radius: 50%;
+  left: 335px;
+  top: 205px;
+}
+
+/* add button */
+
+.add-button {
+  position: absolute;
+  left: 50%;
+  bottom: 80px;
+  transform: translateX(-50%);
+  border: none;
+  border-radius: 999px;
+  padding: 12px 34px;
+  background: #eeeeee;
+  color: #3d3d3d;
+  font-family: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  z-index: 15;
+}
+
+.add-button:hover {
+  opacity: 0.8;
+}
+
+/* planet */
+
+.friend-planet {
+  position: absolute;
+  width: 74px;
+  height: 74px;
+  left: 0;
+  top: 0;
+  z-index: 50;
+  cursor: pointer;
+  opacity: 1;
+  display: block;
+  transform: translate(-50%, -50%) scale(1);
+  transition:
+    background-color 0.25s ease,
+    border-radius 0.25s ease,
+    clip-path 0.25s ease,
+    width 0.25s ease,
+    height 0.25s ease;
+}
+
+/* shapes */
+
+.circle {
+  border-radius: 50%;
+  clip-path: none;
+}
+
+.soft {
+  border-radius: 28% 34% 30% 36%;
+  clip-path: polygon(
+    30% 0%,
+    72% 5%,
+    100% 35%,
+    88% 78%,
+    48% 100%,
+    8% 78%,
+    0% 32%
+  );
+}
+
+.blob {
+  border-radius: 45% 55% 52% 48%;
+  clip-path: none;
+}
+
+.star {
+  border-radius: 18px;
+  clip-path: polygon(
+    50% 0%,
+    60% 32%,
+    95% 22%,
+    72% 50%,
+    95% 78%,
+    60% 68%,
+    50% 100%,
+    40% 68%,
+    5% 78%,
+    28% 50%,
+    5% 22%,
+    40% 32%
+  );
+}
+
+.spark {
+  border-radius: 18px;
+  clip-path: polygon(
+    50% 0%,
+    62% 36%,
+    100% 50%,
+    62% 64%,
+    50% 100%,
+    38% 64%,
+    0% 50%,
+    38% 36%
+  );
+}
+
+/* panel */
+
+.side-panel {
+  position: absolute;
+  right: 60px;
+  top: 50%;
+  width: 520px;
+  height: 720px;
+  transform: translateY(-50%);
+  padding: 44px 52px 44px 44px;
+  border-radius: 30px;
+  background: #d8d8d8;
+  color: #3d3d3d;
+  z-index: 20;
+  overflow-y: auto;
+}
+
+.side-panel.hidden,
+.dash-line.hidden {
+  display: none !important;
+}
+
+.close-panel {
+  position: absolute;
+  right: 28px;
+  top: 26px;
+  border: none;
+  background: transparent;
+  font-size: 24px;
+  color: #666;
+  cursor: pointer;
+}
+
+.planet-preview {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 52px;
+  background: #d9b6bc;
+  transition:
+    background-color 0.25s ease,
+    border-radius 0.25s ease,
+    clip-path 0.25s ease;
+}
+
+/* name row */
+
+.name-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 34px;
+}
+
+.name-row label {
+  margin: 0;
+  width: 70px;
+}
+
+#friendNameInput {
+  width: 220px;
+  height: 28px;
+  background: #f4f4f4;
+  color: #333;
+  border: none;
+  border-radius: 999px;
+  padding: 4px 14px;
+  font-size: 15px;
+}
+
+/* options */
+
+.side-panel > label {
+  display: block;
+  margin: 28px 0 12px;
+}
+
+.option-row,
+.color-row,
+.shape-row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 20px 24px;
+  border-radius: 22px;
+  background: #f1f1f1;
+  overflow: visible;
+}
+
+.color-option,
+.shape-option {
+  width: 62px;
+  height: 62px;
+  min-width: 62px;
+  min-height: 62px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+  font-size: 0;
+  background: transparent;
+}
+
+.color-option {
+  background-color: var(--swatch-color, #d9b6bc);
+  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.16);
+}
+
+.color-option.selected {
+  outline: 5px solid rgba(255, 255, 255, 0.75);
+  outline-offset: -8px;
+}
+
+.shape-option.selected {
+  background: rgba(80, 80, 80, 0.14);
+}
+
+.shape-swatch {
+  width: 46px;
+  height: 46px;
+  margin: 8px auto;
+  display: block;
+  background: #9a9a9a;
+  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.16);
+}
+
+/* slider */
+
+.slider-group {
+  margin-top: 34px;
+}
+
+.slider-group h3 {
+  margin: 0 0 16px;
+  font-size: 18px;
+}
+
+.slider-group p {
+  margin: 0 0 16px;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.slider-group input[type="range"] {
+  width: 100%;
+}
+
+.range-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+/* dash connector */
+
+.dash-line {
+  position: fixed;
+  height: 0;
+  border-top: 2px dashed rgba(238, 238, 238, 0.75);
+  transform-origin: left center;
+  z-index: 12;
+  pointer-events: none;
+}
+
+/* subtle scrollbar */
+
+.side-panel::-webkit-scrollbar {
+  width: 6px;
+}
+
+.side-panel::-webkit-scrollbar-track {
+  background: transparent;
+  margin: 16px 0;
+}
+
+.side-panel::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 999px;
+}
+
+.side-panel:hover::-webkit-scrollbar-thumb {
+  background: rgba(120, 120, 120, 0.45);
+}
+
+/* slider base */
+input[type="range"] {
+ -webkit-appearance: none;
+  width: 100%;
+  height: 4px;
+  background: #888;
+  border-radius: 999px;
+  outline: none;
+}
+
+/* track */
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 4px;
+  background: #777;
+  border-radius: 999px;
+}
+
+/* thumb */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  background: #3d3d3d;
+  border-radius: 50%;
+  margin-top: -7px;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.dot-line {
+  position: fixed;
+  height: 8px;
+  pointer-events: none;
+  z-index: 12;
+  background-image: radial-gradient(
+    circle,
+    rgba(238, 238, 238, 0.9) 2.5px,
+    transparent 3px
+  );
+  background-size: 16px 8px;
+  background-repeat: repeat-x;
+  transform: translateY(-50%);
+  mask-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.05),
+    rgba(0, 0, 0, 0.45),
+    rgba(0, 0, 0, 1)
+  );
+}
+
+.side-panel {
+  opacity: 0;
+  transform: translateY(-50%) translateX(24px);
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.side-panel.panel-open {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+.side-panel.hidden {
+  display: none !important;
+}
+
+.planet-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.planet-list.hidden {
+  display: none;
+}
+
+.planet-count {
+  font-size: 14px;
+  margin-bottom: 12px;
+  color: rgba(238, 238, 238, 0.9);
+}
+
+.planet-list-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: rgba(238, 238, 238, 0.82);
+}
+
+.planet-mini {
+  width: 24px;
+  height: 24px;
+  background: #d9b6bc;
+}
+
+/* click action menu */
+
+.planet-menu {
+  position: fixed;
+  width: 150px;
+  height: 150px;
+  pointer-events: none;
+  z-index: 60;
+}
+
+.planet-menu button {
+  position: absolute;
+  border: none;
+  background: transparent;
+  color: #eeeeee;
+  font-family: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  pointer-events: auto;
+  opacity: 0;
+  animation: menuPop 0.35s ease forwards;
+}
+
+.planet-menu .send-action {
+  left: 78px;
+  top: 10px;
+  transform: rotate(28deg);
+}
+
+.planet-menu .review-action {
+  left: 18px;
+  bottom: 10px;
+  transform: rotate(-22deg);
+}
+
+@keyframes menuPop {
+  from {
+    opacity: 0;
+    scale: 0.92;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+.friend-planet.pulse {
+  animation: planetPulse 0.45s ease;
+}
+
+@keyframes planetPulse {
+  0% { transform: translate(-50%, -50%) scale(1); }
+  45% { transform: translate(-50%, -50%) scale(0.82); }
+  100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+/* signal panel */
+
+.signal-panel {
+  width: 520px;
+  height: 720px;
+}
+
+.signal-icon,
+.signal-title,
+.signal-desc {
+  text-align: center;
+}
+
+.signal-icon {
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+
+.signal-title {
+  margin: 0 0 18px;
+  font-size: 18px;
+}
+
+.signal-desc {
+  margin: 0 0 36px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.message-box {
+  position: relative;
+  width: 100%;
+  height: 420px;
+  background: #f4f4f4;
+  border-radius: 18px;
+  padding: 22px;
+}
+
+.message-box p {
+  margin: 0 0 12px;
+  font-size: 13px;
+}
+
+.message-box textarea {
+  width: 100%;
+  height: 330px;
+  border: none;
+  outline: none;
+  resize: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 15px;
+  color: #3d3d3d;
+}
+
+.char-count {
+  position: absolute;
+  right: 18px;
+  bottom: 14px;
+  font-size: 11px;
+  opacity: 0.45;
+}
+
+.send-button {
+  display: block;
+  margin: 10px auto 0;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+
+.friend-planet.pulse {
+  animation: planetPulse 0.42s ease;
+}
+
+@keyframes planetPulse {
+  0% { transform: translate(-50%, -50%) scale(1); }
+  45% { transform: translate(-50%, -50%) scale(0.84); }
+  100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+.orbit-action-menu {
+  position: fixed;
+  width: 240px;
+  height: 240px;
+  transform: translate(-50%, -50%) scale(0.92);
+  opacity: 0;
+  z-index: 80;
+  pointer-events: none;
+  transition:
+    opacity 0.35s ease,
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.orbit-action-menu.menu-open {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.orbit-menu-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  animation: orbitMenuSpin 28s linear infinite;
+  transform-origin: 50% 50%;
+}
+
+.orbit-menu-arc {
+  fill: none;
+  stroke: rgba(238, 238, 238, 0.72);
+  stroke-width: 1.3;
+  stroke-linecap: round;
+  stroke-dasharray: 150 340;
+}
+
+.arc-top-left {
+  transform-origin: 120px 120px;
+  transform: rotate(118deg);
+}
+
+.arc-bottom-right {
+  transform-origin: 120px 120px;
+  transform: rotate(-62deg);
+}
+
+.orbit-menu-text {
+  fill: #eeeeee;
+  font-family: inherit;
+  font-size: 14px;
+  letter-spacing: 1px;
+  font-weight: 700;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.orbit-menu-text:hover {
+  opacity: 0.65;
+}
+
+@keyframes orbitMenuSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.orbit-screen.signal-mode {
+  background: #2f2f2f;
+  transition: background 0.35s ease;
+}
+
+.orbit-screen.signal-mode .orbit-header,
+.orbit-screen.signal-mode .add-button,
+.orbit-screen.signal-mode .center-planet,
+.orbit-screen.signal-mode .friend-planet:not(.breathing) {
+  opacity: 0.35;
+  transition: opacity 0.35s ease;
+}
+
+.friend-planet.breathing {
+  animation: planetBreath 2.2s ease-in-out infinite;
+  opacity: 1 !important;
+}
+
+@keyframes planetBreath {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(0.86);
+  }
+}
+
+/* signal flight animation */
+
+.signal-flight {
+  position: fixed;
+  inset: 0;
+  background: #3d3d3d;
+  z-index: 120;
+  overflow: hidden;
+  opacity: 0;
+  animation: none;
+}
+
+.signal-flight.hidden {
+  display: none;
+}
+
+.signal-flight.playing {
+  animation: flightFadeIn 0.7s ease forwards;
+}
+
+.flight-close {
+  position: absolute;
+  right: 34px;
+  top: 26px;
+  border: none;
+  background: transparent;
+  color: #eeeeee;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 150;
+  opacity: 0.65;
+}
+
+/* 내 행성 */
+
+.home-planet-flight {
+  position: absolute;
+  left: 50%;
+  bottom: -260px;
+  width: 520px;
+  height: 520px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: #d8d8d8;
+}
+
+.home-planet-name {
+  position: absolute;
+  left: 50%;
+  top: -34px;
+  transform: translateX(-50%);
+  color: #eeeeee;
+  font-size: 12px;
+}
+
+.planet-hole {
+  position: absolute;
+  left: 50%;
+  top: 52px;
+  width: 150px;
+  height: 32px;
+  transform: translateX(-50%) scaleX(0);
+  background: rgba(61, 61, 61, 0.36);
+  border-radius: 50%;
+}
+
+/* 친구 행성 */
+
+.target-planet-flight {
+  position: absolute;
+  right: 17%;
+  top: 48%;
+  width: 150px;
+  height: 150px;
+  opacity: 0;
+  transform: scale(0.5);
+  background: #d7edf2;
+}
+
+.target-planet-flight span {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%) scale(0.26);
+  transform-origin: center;
+  color: #eeeeee;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+/* UFO */
+
+.flight-ufo {
+  position: absolute;
+  left: 50%;
+  top: 61%;
+  width: 360px;
+  height: auto;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.4);
+  z-index: 130;
+  pointer-events: none;
+}
+
+.ufo-img {
+  width: 100%;
+  display: block;
+  position: relative;
+  z-index: 4;
+}
+
+.ufo-light {
+  position: absolute;
+  left: 50%;
+  top: 58%;
+  width: 240px;
+  height: 460px;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    to bottom,
+    rgba(238, 238, 238, 0.32),
+    rgba(238, 238, 238, 0.08),
+    rgba(238, 238, 238, 0)
+  );
+  clip-path: polygon(43% 0%, 57% 0%, 100% 100%, 0% 100%);
+  opacity: 0;
+  z-index: 1;
+}
+
+/* final */
+
+.signal-sent-text {
+  position: absolute;
+  top: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #eeeeee;
+  font-size: 20px;
+  letter-spacing: 0.5px;
+  opacity: 0;
+  z-index: 140;
+  animation: none;
+}
+
+.signal-link-box {
+  position: absolute;
+  left: 50%;
+  bottom: 7%;
+  transform: translateX(-50%);
+  width: 430px;
+  height: 28px;
+  padding: 0 8px 0 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #eeeeee;
+  color: #3d3d3d;
+  border-radius: 999px;
+  font-size: 11px;
+  z-index: 140;
+}
+
+.signal-link-box.hidden {
+  display: none;
+}
+
+/* timeline */
+
+@keyframes flightFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes homePlanetSequence {
+  0%, 32% {
+    left: 50%;
+    bottom: -260px;
+    opacity: 1;
+  }
+
+  48%, 100% {
+    left: -30%;
+    bottom: -320px;
+    opacity: 0;
+  }
+}
+
+@keyframes holeSequence {
+  0%, 6% {
+    transform: translateX(-50%) scaleX(0);
+    opacity: 0;
+  }
+
+  10%, 24% {
+    transform: translateX(-50%) scaleX(1);
+    opacity: 1;
+  }
+
+  34%, 100% {
+    opacity: 0;
+  }
+}
+
+@keyframes targetPlanetSequence {
+  0%, 54% {
+    opacity: 0;
+    right: 20%;
+    top: 58%;
+    transform: scale(0.45);
+  }
+
+  68% {
+    opacity: 1;
+    right: 30%;
+    top: 60%;
+    transform: scale(1.25);
+  }
+
+  80%, 100% {
+    opacity: 1;
+    right: 38%;
+    top: 80%;
+    transform: scale(3.8);
+  }
+}
+
+@keyframes ufoSequence {
+  /* 구멍 안에서 대기 */
+  0%, 12% {
+    left: 50%;
+    top: 62%;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.14) rotate(0deg);
+  }
+
+  /* 구멍에서 천천히 등장 */
+  20% {
+    left: 50%;
+    top: 52%;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.30) rotate(-1deg);
+  }
+
+  30% {
+    left: 50%;
+    top: 38%;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.52) rotate(-3deg);
+  }
+
+  /* 옆으로 튕기지 말고 부드럽게 화면 밖으로 */
+  42% {
+    left: 66%;
+    top: 30%;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.56) rotate(2deg);
+  }
+
+  52% {
+    left: 104%;
+    top: 25%;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.50) rotate(6deg);
+  }
+
+  /* 친구 행성 쪽으로 재등장 */
+  58% {
+    left: -10%;
+    top: 36%;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.50) rotate(-6deg);
+  }
+
+  68% {
+    left: 24%;
+    top: 34%;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.58) rotate(-4deg);
+  }
+
+  78% {
+    left: 42%;
+    top: 32%;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.66) rotate(-1deg);
+  }
+
+  /* 친구 행성 근처에서 감속 */
+  84% {
+    left: 50%;
+    top: 34%;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.72) rotate(0deg);
+  }
+
+  /* 2초 정도 둥실거리는 느낌으로 거의 고정 */
+  90% {
+    left: 50%;
+    top: 33%;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.72) rotate(1deg);
+  }
+
+  96%, 100% {
+    left: 50%;
+    top: 34%;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.72) rotate(0deg);
+  }
+}
+
+@keyframes beamSequence {
+  0%, 92% {
+    opacity: 0;
+  }
+
+  95%, 100% {
+    opacity: 0.72;
+  }
+}
+
+
+@keyframes finalTextSequence {
+  0%, 88% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.signal-flight.playing {
+  animation: flightFadeIn 0.7s ease forwards;
+}
+
+
+.signal-flight.playing .home-planet-flight {
+  animation: homePlanetSequence 14s forwards;
+}
+
+.signal-flight.playing .planet-hole {
+  animation: holeSequence 14s forwards;
+}
+
+.signal-flight.playing .flight-ufo {
+  animation: ufoSequence 14s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.signal-flight.playing .target-planet-flight {
+  animation: targetPlanetSequence 14s forwards;
+}
+
+.signal-flight.playing .ufo-light {
+  animation: beamSequence 14s forwards;
+}
+
+
+.signal-flight.playing .signal-sent-text {
+  animation: finalTextSequence 14s forwards;
+}
+
+.home-planet-flight,
+.planet-hole,
+.target-planet-flight,
+.flight-ufo,
+.ufo-light,
+.ufo-letter,
+.signal-sent-text {
+  animation: none;
+}
+
+
+.ufo-letter-dome {
+  position: absolute;
+  left: 50%;
+  top: 42%;
+  width: 58px;
+  height: 38px;
+  transform: translate(-50%, -50%) scale(0.75);
+  background: #eeeeee;
+  border-radius: 4px;
+  opacity: 0.35;
+  z-index: 5;
+}
+
+
+.ufo-letter-drop {
+  position: absolute;
+  left: 50%;
+  top: 64%;   /* 🔥 여기 핵심 */
+  width: 60px;
+  height: 40px;
+  transform: translate(-50%, -50%) scale(0.8);
+  background: #eeeeee;
+  border-radius: 4px;
+  opacity: 0;
+  z-index: 5;
+}
+
+.ufo-letter-drop::before,
+.ufo-letter-drop::after {
+  content: "";
+  position: absolute;
+  inset: 0;   /* 부모 크기 그대로 채움 */
+  pointer-events: none;
+}
+
+.ufo-letter-drop::before {
+  background:
+    linear-gradient(
+      to bottom right,
+      transparent 49%,
+      rgba(180,180,180,0.35) 50%,
+      transparent 51%
+    );
+}
+
+.ufo-letter-drop::after {
+  background:
+    linear-gradient(
+      to bottom left,
+      transparent 49%,
+      rgba(180,180,180,0.35) 50%,
+      transparent 51%
+    );
+}
+
+.signal-flight.playing .ufo-letter-drop {
+  animation:
+    letterDrop 2.8s cubic-bezier(0.22, 0.9, 0.28, 1) 12.1s both;
+}
+
+@keyframes letterDrop {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) translateY(0) scale(0.82) rotate(-2deg);
+  }
+
+  12% {
+    opacity: 1;
+    transform: translate(-50%, -50%) translateY(18px) scale(0.86) rotate(-1deg);
+  }
+
+  38% {
+    opacity: 1;
+    transform: translate(-50%, -50%) translateY(120px) scale(0.94) rotate(1deg);
+  }
+
+  72% {
+    opacity: 1;
+    transform: translate(-50%, -50%) translateY(280px) scale(1) rotate(-1deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) translateY(380px) scale(1.02) rotate(0deg);
+  }
+}
+
+@keyframes letterFloat {
+  0%, 100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) translateY(380px) scale(1.02);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) translateY(366px) scale(1.02);
+  }
+}
+
+
+.signal-flight.playing .ufo-letter-dome {
+  animation: domeLetterFade 14s ease forwards;
+}
+
+@keyframes domeLetterFade {
+  0%, 93% {
+    opacity: 0.35;
+  }
+
+  96% {
+    opacity: 0.15;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.archive-button {
+  position: absolute;
+  left: calc(50% + 500px);
+  bottom: 94px;
+  border: none;
+  border-bottom: 1px solid #eeeeee;
+  background: transparent;
+  color: #eeeeee;
+  font-family: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  z-index: 18;
+}
+
+.archive-button.hidden {
+  display: none;
+}
+
+.archive-panel {
+  width: 400px;
+  height: 690px;
+  padding: 70px 52px 52px;
+}
+
+.archive-list {
+  margin-top: 10px;
+  padding-bottom: 34px;
+} 
+
+.archive-title {
+  margin: 0;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.archive-count {
+  margin: 26px 0 28px;
+  text-align: center;
+  font-size: 12px;
+  color: rgba(61, 61, 61, 0.75);
+}
+
+.archive-list {
+  border-top: 1px solid rgba(61, 61, 61, 0.35);
+}
+
+.archive-item {
+  padding: 18px 0 22px;
+  border-bottom: 1px solid rgba(61, 61, 61, 0.18);
+}
+
+.archive-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: rgba(61, 61, 61, 0.65);
+  margin-bottom: 18px;
+}
+
+.archive-meta span:last-child {
+  color: #6d9bb0;
+}
+
+.archive-item h4 {
+  margin: 0 0 14px;
+  font-size: 15px;
+}
+
+.archive-content {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.archive-planet {
+  width: 64px;
+  height: 64px;
+  flex: 0 0 auto;
+}
+
+.archive-message {
+  flex: 1;
+  min-height: 62px;
+  border: none;
+  border-radius: 18px;
+  padding: 18px 20px;
+  background: #eeeeee;
+  color: #3d3d3d;
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 1.45;
+  text-align: left;
+  cursor: pointer;
+}
+
+.archive-message.expanded {
+  min-height: 110px;
+}
+
+.drift-section {
+  margin-top: 36px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(61, 61, 61, 0.3);
+}
+
+.drift-question {
+  margin: 0 0 18px;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.drift-confirm {
+  margin-top: 18px;
+  padding: 16px;
+  border-radius: 18px;
+  background: rgba(244, 244, 244, 0.65);
+  text-align: center;
+}
+
+.drift-confirm.hidden {
+  display: none;
+}
+
+.drift-confirm p {
+  margin: 0 0 12px;
+  font-size: 14px;
+}
+
+.drift-confirm button {
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 13px;
+  text-decoration: underline;
+  cursor: pointer;
+  margin: 0 8px;
+}
+
+.orbit-vanish-slow {
+  animation: orbitVanishSlow 5s ease forwards;
+}
+
+.planet-vanish-slow {
+  transition: opacity 5s ease;
+  opacity: 0;
+}
+
+@keyframes orbitVanishSlow {
+  from { opacity: 0.7; }
+  to { opacity: 0; }
+}
+
+@keyframes planetVanishSlow {
+  from {
+    opacity: 1;
+    filter: blur(0);
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  to {
+    opacity: 0;
+    filter: blur(3px);
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+}

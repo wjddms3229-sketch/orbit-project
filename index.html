@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Friendship Orbit Generator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <section id="startScreen" class="screen active">
+    <div class="center-content">
+      <h1>FRIENDSHIP ORBIT GENERATOR</h1>
+      <button id="startButton" class="text-button">click to start</button>
+    </div>
+    <div class="big-planet start-planet"></div>
+  </section>
+
+  <section id="nameScreen" class="screen">
+    <div class="center-content">
+      <label for="userName">What is the name of your planet?</label>
+      <input id="userName" type="text" autocomplete="off" />
+    </div>
+    <div class="big-planet start-planet"></div>
+  </section>
+
+  <section id="transitionScreen" class="screen">
+    <div class="scroll-guide" id="scrollGuide">
+      <div class="arrow">↓</div>
+      <p>Scroll to begin your galaxy</p>
+    </div>
+
+    <div class="transition-header" id="transitionHeader">
+      <h2><span id="transitionOrbitName">Yunseo</span>’s Orbit</h2>
+      <p>A quiet space<br />waiting for its first planet</p>
+    </div>
+
+    <div class="orbit-preview" id="orbitPreview">
+      <div class="orbit orbit-1"></div>
+      <div class="orbit orbit-2"></div>
+      <div class="orbit orbit-3"></div>
+      <div class="center-planet"></div>
+    </div>
+  </section>
+
+  <section id="orbitScreen" class="screen orbit-screen">
+    <div class="orbit-header">
+      <h2><span id="orbitName">Yunseo</span>’s Orbit</h2>
+
+      <p id="emptyOrbitText">
+        A quiet space<br />waiting for its first planet
+      </p>
+
+      <div class="planet-list hidden" id="planetList"></div>
+    </div>
+
+    <div class="orbit-area">
+      <div class="orbit orbit-1"></div>
+      <div class="orbit orbit-2"></div>
+      <div class="orbit orbit-3"></div>
+      <div class="center-planet"></div>
+    </div>
+
+    <button class="add-button" id="mainAddButton">＋ Add Someone</button>
+
+    <!-- Review Orbit Panel -->
+    <div class="side-panel hidden" id="planetPanel">
+      <button class="close-panel" id="closePanel">×</button>
+
+      <div class="planet-preview" id="planetPreview"></div>
+
+      <div class="name-row">
+        <label>Name</label>
+        <input id="friendNameInput" type="text" value="Suji" />
+      </div>
+
+      <label>Color</label>
+      <div class="option-row color-row">
+        <button class="color-option selected" data-color="#d9b6bc"></button>
+        <button class="color-option" data-color="#d7edf2"></button>
+        <button class="color-option" data-color="#e4e6bc"></button>
+        <button class="color-option" data-color="#bfc9bd"></button>
+        <button class="color-option" data-color="#eeeeee"></button>
+      </div>
+
+      <label>Shape</label>
+      <div class="option-row shape-row">
+        <button class="shape-option selected" data-shape="circle">
+          <span class="shape-swatch circle"></span>
+        </button>
+        <button class="shape-option" data-shape="soft">
+          <span class="shape-swatch soft"></span>
+        </button>
+        <button class="shape-option" data-shape="blob">
+          <span class="shape-swatch blob"></span>
+        </button>
+        <button class="shape-option" data-shape="star">
+          <span class="shape-swatch star"></span>
+        </button>
+        <button class="shape-option" data-shape="spark">
+          <span class="shape-swatch spark"></span>
+        </button>
+      </div>
+
+      <div class="slider-group">
+        <h3>1. Distance</h3>
+        <p>How close does this planet stay to your center?</p>
+        <input id="distanceSlider" type="range" min="0" max="100" value="50" />
+        <div class="range-labels">
+          <span>Distant</span>
+          <span>Close</span>
+        </div>
+      </div>
+
+      <div class="slider-group">
+        <h3>2. Frequency</h3>
+        <p>How fast does this planet orbit?</p>
+        <input id="frequencySlider" type="range" min="0" max="100" value="50" />
+        <div class="range-labels">
+          <span>Slow</span>
+          <span>Fast</span>
+        </div>
+      </div>
+
+      <div class="slider-group">
+        <h3>3. Care</h3>
+        <p>How strong is its gravity?</p>
+        <input id="careSlider" type="range" min="0" max="100" value="50" />
+        <div class="range-labels">
+          <span>Light</span>
+          <span>Strong</span>
+        </div>
+      </div>
+
+      <div class="slider-group">
+        <h3>4. Stability</h3>
+        <p>How steady is its orbit?</p>
+        <input id="stabilitySlider" type="range" min="0" max="100" value="50" />
+        <div class="range-labels">
+          <span>Fragile</span>
+          <span>Steady</span>
+
+        
+        </div>
+      </div>
+
+       <div class="drift-section">
+    <p class="drift-question">Is it time to let this drift away?</p>
+
+    <input id="driftSlider" type="range" min="0" max="100" value="0" />
+
+    <div class="range-labels">
+    <span>Stay</span>
+    <span>Drift</span>
+    </div>
+
+    <div class="drift-confirm hidden" id="driftConfirm">
+    <p>Are you sure?</p>
+    <button id="confirmDrift">yes</button>
+    <button id="cancelDrift">not yet</button>
+   </div>
+   </div>
+
+   
+    </div>
+    <!-- Send Signal Panel -->
+    <div class="side-panel signal-panel hidden" id="signalPanel">
+      <button class="close-panel" id="closeSignalPanel">×</button>
+
+      <h3 class="signal-title">Send a signal</h3>
+      <p class="signal-desc">
+        Leave something for this planet.<br />
+        It can travel, or stay.
+      </p>
+
+      <div class="message-box">
+        <p>To. <span id="signalToName">Jiyoon</span></p>
+        <textarea id="signalMessage" maxlength="1000"></textarea>
+        <span class="char-count">0/1000</span>
+      </div>
+
+      <button class="send-button" id="sendSignalButton">send</button>
+    </div>
+
+  <div id="signalFlight" class="signal-flight hidden">
+  <button class="flight-close" id="closeFlightButton">×</button>
+
+  <div class="home-planet-flight">
+    <span class="home-planet-name" id="homePlanetFlightName">Yunseo</span>
+    <div class="planet-hole"></div>
+  </div>
+
+  <div class="target-planet-flight" id="targetPlanetFlight">
+    <span id="targetPlanetName">Jiyoon</span>
+  </div>
+
+  <div class="ufo flight-ufo">
+  <img src="ufo.png" class="ufo-img" />
+
+  <div class="ufo-letter-dome"></div>   <!-- 돔 안 -->
+  <div class="ufo-letter-drop"></div>   <!-- 떨어지는 편지 -->
+
+  <div class="ufo-light"></div>
+</div>
+
+  <p class="signal-sent-text">Signal sent. It’s on its way.</p>
+
+  <div class="signal-link-box hidden" id="signalLinkBox">
+    <span>http://www.yunseosorbit.com/signal/2047</span>
+    <button id="copySignalLink">copy</button>
+  </div>
+</div>
+
+    
+    <div class="ufo flight-ufo">
+  <img src="ufo.png" alt="signal ship" class="ufo-img" />
+  <div class="ufo-light"></div>
+  <div class="ufo-letter"></div>
+  </div>
+
+    <p class="signal-sent-text">Signal sent. It’s on its way.</p>
+
+    <div class="signal-link-box hidden" id="signalLinkBox">
+      <span>http://www.yunseosorbit.com/signal/2047</span>
+      <button id="copySignalLink">copy</button>
+    </div>
+  </div>
+</div>
+
+    <div class="dash-line hidden" id="dashLine"></div>
+  </section>
+
+  <button class="archive-button hidden" id="archiveButton">Signal Archive</button>
+
+<div class="side-panel archive-panel hidden" id="archivePanel">
+  <button class="close-panel" id="closeArchivePanel">×</button>
+
+  <h3 class="archive-title">Signal Archive</h3>
+  <p class="archive-count" id="archiveCount">0 signals stored</p>
+
+  <div class="archive-list" id="archiveList"></div>
+</div>
+
+  <script src="script.js"></script>
+</body>
+</html>
