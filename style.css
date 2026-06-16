@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Maax Mono Trial";
+  src: url("./fonts/MaaxMono.otf");
+}
+
 * {
   box-sizing: border-box;
 }
@@ -6,7 +11,7 @@ body {
   margin: 0;
   background: #3d3d3d;
   color: #eeeeee;
-  font-family: "Courier New", monospace;
+  font-family: "Maax Mono Trial", "Courier New", monospace;
   overflow: hidden;
 }
 
@@ -336,14 +341,18 @@ input {
 }
 
 .close-panel {
-  position: absolute;
-  right: 28px;
-  top: 26px;
+  position: sticky;
+  top: 0;
+  margin-left: auto;
+  display: block;
+  width: 28px;
+  height: 28px;
   border: none;
   background: transparent;
   font-size: 24px;
   color: #666;
   cursor: pointer;
+  z-index: 100;
 }
 
 .planet-preview {
